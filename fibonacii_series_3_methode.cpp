@@ -34,7 +34,7 @@ int fibTD(int n,int dp[]){
     return dp[n]=ans;   
 }
 
-// Bottom-up approach  -> O(n) solution 
+// Bottom-up approach  -> O(n) time and O(n) space solution 
 
 int fibBU(int n){
     int dp[1000]={0};
@@ -45,13 +45,29 @@ int fibBU(int n){
     return dp[n];
 }
 
+// Bottom-up approach  -> O(n) time and O(1) space solution 
+
+int fibBUOpspace(int n){
+    if(n==0 || n==1)
+        return n;
+    int a=0;
+    int b=1;
+    int c;
+    for(int i=2;i<=n;i++){
+        c=a+b;
+        a=b;
+        b=c;
+    }
+    return c;
+}
+
 int main() {
     int n;cin>>n;
     // make dp array
     int dp[1000]={0};
     // int res=fibTD(n,dp);
-    int res=fibBU(n);
-
+    // int res=fibBU(n);
+    int res=fibBUOpspace(n);
     //int res=fib(n);
     cout<<res<<endl; 
     return 0;  
